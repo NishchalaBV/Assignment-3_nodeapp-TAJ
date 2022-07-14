@@ -40,7 +40,7 @@ pipeline {
 
     
                 //sh 'ssh -i /login/NishKey2085per.pem ubuntu@10.0.1.32'
-               sh 'ssh -o StrictHostKeyChecking=no ubuntu@10.0.2.12 "docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 499058147482.dkr.ecr.us-east-1.amazonaws.com/assign3-jenkins && docker pull 499058147482.dkr.ecr.us-east-1.amazonaws.com/assign3-jenkins:latest && (docker ps -f name=node -q | xargs --no-run-if-empty docker container stop) && (docker container ls -a -fname=node -q | xargs -r docker container rm) && docker run -d -p 8081:8081 --rm --name node 499058147482.dkr.ecr.us-east-1.amazonaws.com/assign3-jenkins"' 
+               sh 'ssh -o StrictHostKeyChecking=no ubuntu@10.0.2.12 "sudo docker login -u AWS -p $(aws ecr get-login-password --region us-east-1) 499058147482.dkr.ecr.us-east-1.amazonaws.com/assign3-jenkins && sudo docker pull 499058147482.dkr.ecr.us-east-1.amazonaws.com/assign3-jenkins:latest && (sudo docker ps -f name=node -q | xargs --no-run-if-empty sudo docker container stop) && (sudo docker container ls -a -fname=node -q | xargs -r sudo docker container rm) && sudo docker run -d -p 8081:8081 --rm --name node 499058147482.dkr.ecr.us-east-1.amazonaws.com/assign3-jenkins"' 
                 
                
             }
@@ -48,4 +48,5 @@ pipeline {
     }
   
     }
+}
 }
